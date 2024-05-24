@@ -1,0 +1,45 @@
+FROM pytorch/pytorch:latest
+
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        software-properties-common \
+        build-essential \
+        curl \
+        git \
+        vim \
+        ffmpeg
+
+WORKDIR /workspace
+
+COPY . /workspace
+RUN mkdir install_log
+RUN bash /workspace/docker_components/build_ffcv.sh > /workspace/install_log/log_install_ffcv.txt
+RUN bash /workspace/docker_components/build_torch_cupy_libstdcxx_numba.sh > /workspace/install_log/build_torch_cupy_libstdcxx_numba.txt
+
+
+RUN echo "conda activate ffcv" >> ~/.bashrc
+
+CMD ["/bin/bash"]
+# RUN conda create -n ffcv python=3.9 \
+#         cupy \
+#         pkg-config \
+#         compilers \
+#         libjpeg-turbo \
+#         opencv \
+#         pytorch \
+#         torchvision \
+#         cudatoolkit=11.3 \
+#         numba -c pytorch -c conda-forge 
+
+# RUN echo "source activate" >> ~/.bashrc
+# RUN echo "conda activate ffcv" >> ~/.bashrc
+
+# RUN git clone https://github.com/libffcv/ffcv.git  
+
+# # RUN conda run -n ffcv pip install ffcv
+
+# To test:
+# 1- build the Dockerfile (e.g. docker build -t ffcv .)
+# 2- login to the docker container (e.g. docker run -it --gpus all ffcv bash)
+# 3- cd ffcv/examples/cifar
+# 4- bash train_cifar.sh

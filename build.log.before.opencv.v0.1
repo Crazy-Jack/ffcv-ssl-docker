@@ -1,0 +1,101 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.before.opencv
+#1 transferring dockerfile: 1.27kB done
+#1 DONE 0.0s
+
+#2 [auth] pytorch/pytorch:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/pytorch/pytorch:latest
+#3 DONE 0.6s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/8] FROM docker.io/pytorch/pytorch:latest@sha256:11691e035a3651d25a87116b4f6adc113a27a29d8f5a6a583f8569e0ee5ff897
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 187.07kB 0.0s done
+#6 DONE 0.0s
+
+#7 [2/8] RUN apt-get update && apt-get install -y --no-install-recommends         software-properties-common         build-essential         curl         git         ffmpeg
+#7 CACHED
+
+#8 [3/8] WORKDIR /workspace
+#8 CACHED
+
+#9 [4/8] COPY . /workspace
+#9 DONE 0.0s
+
+#10 [5/8] RUN mkdir install_log
+#10 DONE 0.1s
+
+#11 [6/8] RUN bash /workspace/docker_components/build_ffcv.sh > /workspace/install_log/log_install_ffcv.txt
+#11 2.969 W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: http://archive.ubuntu.com/ubuntu jammy InRelease: At least one invalid signature was encountered.
+#11 2.969 W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: http://security.ubuntu.com/ubuntu jammy-security InRelease: At least one invalid signature was encountered.
+#11 2.969 W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: http://archive.ubuntu.com/ubuntu jammy-updates InRelease: At least one invalid signature was encountered.
+#11 2.969 W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: http://archive.ubuntu.com/ubuntu jammy-backports InRelease: At least one invalid signature was encountered.
+#11 2.969 W: Failed to fetch http://archive.ubuntu.com/ubuntu/dists/jammy/InRelease  At least one invalid signature was encountered.
+#11 2.969 W: Failed to fetch http://archive.ubuntu.com/ubuntu/dists/jammy-updates/InRelease  At least one invalid signature was encountered.
+#11 2.969 W: Failed to fetch http://archive.ubuntu.com/ubuntu/dists/jammy-backports/InRelease  At least one invalid signature was encountered.
+#11 2.969 W: Failed to fetch http://security.ubuntu.com/ubuntu/dists/jammy-security/InRelease  At least one invalid signature was encountered.
+#11 2.969 W: Some index files failed to download. They have been ignored, or old ones used instead.
+#11 4.077 E: You don't have enough free space in /var/cache/apt/archives/.
+#11 4.083 /workspace/docker_components/build_ffcv.sh: line 22: wget: command not found
+#11 8.682 
+#11 8.682 
+#11 8.682 ==> WARNING: A newer version of conda exists. <==
+#11 8.682   current version: 23.9.0
+#11 8.682   latest version: 24.5.0
+#11 8.682 
+#11 8.682 Please update conda by running
+#11 8.682 
+#11 8.682     $ conda update -n base -c defaults conda
+#11 8.682 
+#11 8.682 Or to minimize the number of packages updated during conda update use
+#11 8.682 
+#11 8.682      conda install conda=24.5.0
+#11 8.682 
+#11 8.682 
+#11 DONE 15.6s
+
+#12 [7/8] RUN bash /workspace/docker_components/build_torch_cupy_libstdcxx_numba.sh > /workspace/install_log/build_torch_cupy_libstdcxx_numba.txt
+#12 20.01 ERROR: Could not install packages due to an OSError: [Errno 28] No space left on device
+#12 20.01 
+#12 20.07 WARNING: There was an error checking the latest version of pip.
+#12 25.92 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#12 33.27 WARNING conda.models.version:get_matcher(556): Using .* with relational operator is superfluous and deprecated and will be removed in a future version of conda. Your spec was 1.7.1.*, but conda is ignoring the .* and treating it as 1.7.1
+#12 57.58 
+#12 57.58 
+#12 57.58 ==> WARNING: A newer version of conda exists. <==
+#12 57.58   current version: 23.9.0
+#12 57.58   latest version: 24.5.0
+#12 57.58 
+#12 57.58 Please update conda by running
+#12 57.58 
+#12 57.58     $ conda update -n base -c defaults conda
+#12 57.58 
+#12 57.58 Or to minimize the number of packages updated during conda update use
+#12 57.58 
+#12 57.58      conda install conda=24.5.0
+#12 57.58 
+#12 57.58 
+#12 63.70 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#12 DONE 64.0s
+
+#13 [8/8] RUN echo "conda activate ffcv" >> ~/.bashrc
+#13 DONE 0.1s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 1.7s done
+#14 writing image sha256:c8a2582b20c38266fab3b5cdc275a8ac6d6cfdf578fe18e1f83f062e27631489
+#14 writing image sha256:c8a2582b20c38266fab3b5cdc275a8ac6d6cfdf578fe18e1f83f062e27631489 done
+#14 naming to docker.io/library/ffcv-ssl-dense-pred-before-opencv.v.0.1 done
+#14 DONE 1.7s
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview
